@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const configViewEngine = require('./config/viewEngine');
 const webBrower = require('./routes/web');
+const apiBrower = require('./routes/api');
 const connection = require('./config/database');
 
 const app = express();
@@ -11,7 +12,10 @@ const hostname = process.env.HOST_NAME;
 app.use(express.json()); //utilizes the body-parser package
 app.use(express.urlencoded({ extended: true }));
 configViewEngine(app);
+
+//khoi tao route
 app.use('/', webBrower);
+app.use('/v1/api/', apiBrower);
 
 //test connection
 (async () => {

@@ -4,10 +4,13 @@ const configViewEngine = require('./config/viewEngine');
 const webBrower = require('./routes/web');
 const apiBrower = require('./routes/api');
 const connection = require('./config/database');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 const port = process.env.PORT || 8888;
 const hostname = process.env.HOST_NAME;
+
+app.use(fileUpload());
 
 app.use(express.json()); //utilizes the body-parser package
 app.use(express.urlencoded({ extended: true }));
